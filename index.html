@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulario PTS · LE-8 · Corresponsabilidad y Pedagogía Ciudadana · GESEG</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,800;1,400;1,800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+:root{
+  --bg:#F4F4F4;--surface:#FFFFFF;--card:#FFFFFF;--card2:#F7F8FA;
+  --navy:#002855;--cobalt:#0057A8;--cobalt2:#00468A;
+  --gold:#C8A84B;--gold2:#9C7A2E;
+  --gold-bg:rgba(200,168,75,.13);--gold-brd:rgba(200,168,75,.38);
+  --stl-bg:rgba(0,87,168,.07);--stl-brd:rgba(0,87,168,.22);
+  --teal:#0E9F6E;--teal-bg:rgba(14,159,110,.09);--teal-brd:rgba(14,159,110,.25);
+  --orange:#E07A28;--orange-d:#B85C00;
+  --orange-bg:rgba(224,122,40,.09);--orange-brd:rgba(224,122,40,.30);
+  --accent:#D6534A;--acc2:#C0392B;
+  --acc-bg:rgba(214,83,74,.08);--acc-brd:rgba(214,83,74,.28);
+  --border:rgba(0,40,85,.11);--brd2:rgba(0,40,85,.06);
+  --ink:#1C2B3A;--ink2:#3D5568;--ink3:#5A6878;
+  --r:10px;--r2:16px;--r3:24px;
+  --sh:0 4px 24px rgba(0,40,85,.07);
+  --sh2:0 2px 12px rgba(0,40,85,.05);
+  --font-d:'Fraunces',Georgia,serif;
+  --font-b:'Space Grotesk',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--bg);color:var(--ink);min-height:100vh;font-size:15px;line-height:1.7}
+
+.stripe{height:3px;background:linear-gradient(90deg,var(--cobalt),var(--gold),var(--teal),var(--accent),var(--cobalt));background-size:400% 100%;animation:sA 6s linear infinite}
+@keyframes sA{0%{background-position:0%}100%{background-position:400%}}
+
+.topbar{background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:100}
+.tb-brand{display:flex;align-items:center;gap:14px}
+.tb-name{font-weight:700;color:var(--navy);font-size:.95em;line-height:1.3}
+.tb-name span{display:block;font-weight:400;font-size:.78em;color:var(--ink2)}
+.pill{font-size:.72em;padding:3px 11px;border-radius:20px;font-weight:600;white-space:nowrap}
+.pill-stl{background:var(--stl-bg);border:1px solid var(--stl-brd);color:var(--cobalt)}
+.pill-gold{background:var(--gold-bg);border:1px solid var(--gold-brd);color:var(--gold2)}
+.pill-teal{background:var(--teal-bg);border:1px solid var(--teal-brd);color:var(--teal)}
+.pill-acc{background:var(--acc-bg);border:1px solid var(--acc-brd);color:var(--accent)}
+.pill-orange{background:var(--orange-bg);border:1px solid var(--orange-brd);color:var(--orange-d)}
+.pill-navy{background:rgba(0,40,85,.08);border:1px solid rgba(0,40,85,.22);color:var(--navy)}
+
+.hero{position:relative;background:var(--navy);padding:48px 24px 44px;overflow:hidden;text-align:center;color:#fff}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:32px 32px}
+.hero-glow{position:absolute;width:420px;height:420px;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);filter:blur(90px);opacity:.35;pointer-events:none}
+.hero-inner{position:relative;max-width:780px;margin:0 auto}
+.hero h1{font-family:var(--font-d);font-size:clamp(1.5em,3.5vw,2.2em);font-weight:800;margin-bottom:.3em;line-height:1.2}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p{font-size:.92em;opacity:.82;max-width:600px;margin:0 auto;line-height:1.7}
+.doc-badge{display:inline-block;font-size:.72em;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);padding:3px 14px;border-radius:20px;margin-bottom:14px;font-weight:500}
+
+.wrap{max-width:920px;margin:0 auto;padding:24px 16px 60px}
+.sec-title{font-family:var(--font-d);font-size:1.35em;font-weight:700;color:var(--navy);margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--gold)}
+
+/* PTS Card */
+.pts-card{background:var(--card);border-radius:var(--r2);border:1px solid var(--border);box-shadow:var(--sh);margin-bottom:28px;overflow:hidden}
+.pts-header{padding:18px 22px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--brd2)}
+.pts-code{font-family:var(--font-d);font-size:1.3em;font-weight:800;min-width:72px}
+.pts-title{font-weight:600;font-size:.95em;color:var(--ink);line-height:1.35}
+.pts-title small{display:block;font-size:.8em;font-weight:400;color:var(--ink3)}
+
+.pts-body{padding:20px 22px}
+.pts-section{margin-bottom:20px}
+.pts-section-hdr{font-size:.78em;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:6px 12px;border-radius:6px;margin-bottom:10px;display:inline-block}
+.sh-stl{background:var(--stl-bg);color:var(--cobalt)}
+.sh-gold{background:var(--gold-bg);color:var(--gold2)}
+.sh-teal{background:var(--teal-bg);color:var(--teal)}
+.sh-acc{background:var(--acc-bg);color:var(--accent)}
+.sh-orange{background:var(--orange-bg);color:var(--orange-d)}
+.sh-navy{background:rgba(0,40,85,.08);color:var(--navy)}
+
+.fld{margin-bottom:14px}
+.lbl{display:block;font-size:.78em;font-weight:600;color:var(--ink2);margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.fld input,.fld textarea,.fld select{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:var(--r);font-family:var(--font-b);font-size:.88em;background:var(--card2);color:var(--ink);transition:border-color .2s,box-shadow .2s}
+.fld input:focus,.fld textarea:focus,.fld select:focus{outline:none;border-color:var(--cobalt);box-shadow:0 0 0 3px rgba(0,87,168,.1)}
+.fld textarea{min-height:60px;resize:vertical}
+.hint{font-size:.72em;color:var(--ink3);margin-top:3px}
+
+.geo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.geo-grid{grid-template-columns:1fr}}
+.geo-grid .fld{margin-bottom:8px}
+
+.op-row{background:var(--card2);border-radius:var(--r);padding:10px 14px;margin-bottom:8px;border-left:3px solid var(--cobalt);display:flex;gap:10px;align-items:baseline}
+.op-code{font-weight:700;font-size:.82em;color:var(--cobalt);min-width:60px;flex-shrink:0}
+.op-desc{font-size:.88em;color:var(--ink2)}
+
+.ind-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:.88em}
+.ind-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+.status-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.status-opt{position:relative}
+.status-opt input{position:absolute;opacity:0;pointer-events:none}
+.status-opt label{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:20px;border:1px solid var(--border);font-size:.82em;font-weight:500;cursor:pointer;transition:all .2s;background:var(--card2)}
+.status-opt input:checked+label{border-color:var(--cobalt);background:var(--stl-bg);color:var(--cobalt);font-weight:700}
+
+.sem-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.sem-opt{position:relative}
+.sem-opt input{position:absolute;opacity:0;pointer-events:none}
+.sem-opt label{display:inline-flex;align-items:center;gap:5px;padding:6px 16px;border-radius:20px;border:2px solid var(--border);font-size:.82em;font-weight:600;cursor:pointer;transition:all .2s}
+.sem-verde label{color:#0E9F6E}
+.sem-amarillo label{color:#C8A84B}
+.sem-rojo label{color:#D6534A}
+.sem-opt input:checked+label.sv{border-color:#0E9F6E;background:rgba(14,159,110,.12)}
+.sem-opt input:checked+label.sa{border-color:#C8A84B;background:rgba(200,168,75,.12)}
+.sem-opt input:checked+label.sr{border-color:#D6534A;background:rgba(214,83,74,.12)}
+
+.info-box{padding:12px 16px;border-radius:var(--r);margin-bottom:12px;font-size:.85em;line-height:1.6;border-left:3px solid}
+.ib-stl{background:var(--stl-bg);border-color:var(--cobalt);color:var(--cobalt2)}
+.ib-gold{background:var(--gold-bg);border-color:var(--gold);color:var(--gold2)}
+.ib-teal{background:var(--teal-bg);border-color:var(--teal);color:#0a7d56}
+.ib-acc{background:var(--acc-bg);border-color:var(--accent);color:var(--acc2)}
+
+.meta-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.meta-tag{font-size:.72em;padding:2px 9px;border-radius:12px;font-weight:600}
+
+.footer{background:var(--navy);color:rgba(255,255,255,.6);text-align:center;padding:20px;font-size:.75em;line-height:1.7}
+.footer b{color:rgba(255,255,255,.85)}
+
+.btn-print{position:fixed;bottom:20px;right:20px;background:var(--navy);color:#fff;border:none;padding:10px 20px;border-radius:var(--r);cursor:pointer;font-family:var(--font-b);font-weight:600;font-size:.85em;box-shadow:var(--sh);z-index:200;display:flex;align-items:center;gap:6px;transition:transform .15s}
+.btn-print:hover{transform:translateY(-2px)}
+@media print{.btn-print,.topbar,.stripe{display:none!important}.hero{padding:24px!important}.wrap{padding:12px!important}.pts-card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="stripe"></div>
+
+<div class="topbar">
+  <div class="tb-brand">
+    <div style="background:#fff;border-radius:7px;padding:6px 14px;display:flex;align-items:center;box-shadow:0 1px 6px rgba(0,0,0,.12);">
+  <div style="display:flex;flex-direction:column;align-items:center;line-height:1.2;">
+    <span style="font-weight:800;font-size:1.2em;color:#002855;letter-spacing:.05em;">GESEG</span>
+    <span style="font-size:.55em;font-weight:600;color:#0057A8;letter-spacing:.03em;">Gestión de la Seguridad S.A.S.</span>
+  </div>
+</div>
+    <div style="width:1px;height:28px;background:rgba(0,40,85,.14);flex-shrink:0;"></div>
+    <div class="tb-name">OSCC — Barranquilla 2026<span>Formulario PTS · LE-8 · Hurto de Vehículos</span></div>
+  </div>
+  <div style="display:flex;gap:7px;flex-wrap:wrap;">
+    <span class="pill pill-gold">LE-8</span>
+    <span class="pill pill-gold">2 Problemas Territoriales</span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow" style="background:rgba(200,168,75,.35)"></div>
+  <div class="hero-inner">
+    <div class="doc-badge">Ficha Técnica Formulario · Problema Territorial de Seguridad · LE-8</div>
+    <h1>📢 Corresponsabilidad y Pedagogía Ciudadana</h1>
+    <p>Reducir la tolerancia social a la compra ilícita, incrementar la denuncia y la autoprotección, con foco en los gremios, el comercio formal y los colectivos de mototrabajadores.</p>
+    <div style="margin-top:16px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+      <a href="#pts19" class="pill pill-gold" style="text-decoration:none;cursor:pointer">PTS-19</a>
+<a href="#pts20" class="pill pill-gold" style="text-decoration:none;cursor:pointer">PTS-20</a>
+
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="info-box ib-gold" style="margin-bottom:24px">
+    <strong>Instrucciones:</strong> Diligencie cada ficha PTS con la información territorial actualizada. La <strong>georreferenciación</strong> es el dato central: registre coordenadas, polígonos y cuadrantes de cada intervención. Actualice el estado y el semáforo en cada ciclo de reporte conforme al Tablero de Control del Plan Operacional. Cada ficha debe mantener trazabilidad completa hacia el Diagnóstico Estratégico.
+  </div>
+
+  <div class="sec-title">LE-8 — Fichas de Acción Territorial (PTS-19, PTS-20)</div>
+
+  
+    <div class="pts-card" id="pts19">
+      <div class="pts-header" style="background:linear-gradient(135deg,#C8A84B11,#C8A84B05)">
+        <span class="pts-code" style="color:#C8A84B">PTS-19</span>
+        <div class="pts-title">Pactos de trazabilidad y corresponsabilidad gremial<small>PRY-19 · LE-8 · HC-4 · Causas sociales</small></div>
+      </div>
+      <div class="pts-body">
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Problema Territorial Identificado</div>
+          <div class="info-box ib-gold">Tolerancia social a la compra de repuestos de origen dudoso; sin estándares verificables.</div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Objetivo de la Acción</div>
+          <p style="font-size:.9em;color:var(--ink2);margin-bottom:8px">Acordar estándares verificables con gremios, aseguradoras y plataformas.</p>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">📍 Georreferenciación y Focalización Territorial</div>
+          <div class="info-box ib-gold" style="margin-bottom:12px"><strong>Foco territorial:</strong> Establecimientos adheridos (georreferenciados desde PRY-04); zonas de verificación.</div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Localidad(es)</label><input type="text" placeholder="Ej: Norte-Centro Histórico, Suroccidente…"></div>
+            <div class="fld"><label class="lbl">Barrio(s) / Polígono(s)</label><input type="text" placeholder="Ej: Centro, Barrio Abajo, Boston…"></div>
+            <div class="fld"><label class="lbl">Latitud</label><input type="text" placeholder="Ej: 10.9685"></div>
+            <div class="fld"><label class="lbl">Longitud</label><input type="text" placeholder="Ej: -74.7813"></div>
+            <div class="fld"><label class="lbl">Cuadrante(s) MEBAR</label><input type="text" placeholder="Ej: CAI Norte, Cuadrante 4-2…"></div>
+            <div class="fld"><label class="lbl">Corredor(es) Asociado(s)</label><input type="text" placeholder="Ej: Cordialidad–Galapa…"></div>
+            <div class="fld"><label class="lbl">Zona de Influencia (Radio)</label><input type="text" placeholder="Ej: 500 m"></div>
+            <div class="fld"><label class="lbl">Referencia Cartográfica</label><input type="text" placeholder="Ej: Mapa Leaflet hoja 3, Anexo…"></div>
+          </div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Acciones Operacionales</div>
+          <div class="op-row" style="border-left-color:#C8A84B">
+          <span class="op-code" style="color:#C8A84B">OP-19.1</span>
+          <span class="op-desc">Estructuración y suscripción de pactos con sello de trazabilidad</span>
+        </div>
+<div class="op-row" style="border-left-color:#C8A84B">
+          <span class="op-code" style="color:#C8A84B">OP-19.2</span>
+          <span class="op-desc">Verificación y sostenimiento: visitas, tablero, gestión de incumplimientos</span>
+        </div>
+
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Indicadores de Seguimiento</div>
+          <div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Pactos verificados</div>
+<div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Cumplimiento semestral</div>
+<div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Sello operando</div>
+
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Responsable y Cronograma</div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Responsable (R)</label><input type="text" value="OSCC" readonly style="font-weight:600"></div>
+            <div class="fld"><label class="lbl">Horizonte Temporal</label><input type="text" value="2026-S2 · Operación continua a 2029" readonly style="font-size:.82em"></div>
+          </div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Control y Seguimiento</div>
+          <div class="fld">
+            <label class="lbl">Estado Actual</label>
+            <div class="status-row">
+              <div class="status-opt"><input type="radio" name="estado_pts19" id="e1_pts19"><label for="e1_pts19">⬜ No Iniciado</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts19" id="e2_pts19"><label for="e2_pts19">📐 En Diseño</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts19" id="e3_pts19"><label for="e3_pts19">▶️ En Ejecución</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts19" id="e4_pts19"><label for="e4_pts19">✅ Consolidado</label></div>
+            </div>
+          </div>
+          <div class="fld">
+            <label class="lbl">Semáforo</label>
+            <div class="sem-row">
+              <div class="sem-opt sem-verde"><input type="radio" name="sem_pts19" id="sv_pts19"><label for="sv_pts19" class="sv">🟢 Verde</label></div>
+              <div class="sem-opt sem-amarillo"><input type="radio" name="sem_pts19" id="sa_pts19"><label for="sa_pts19" class="sa">🟡 Amarillo</label></div>
+              <div class="sem-opt sem-rojo"><input type="radio" name="sem_pts19" id="sr_pts19"><label for="sr_pts19" class="sr">🔴 Rojo</label></div>
+            </div>
+          </div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Fecha de Última Actualización</label><input type="date"></div>
+            <div class="fld"><label class="lbl">Responsable del Registro</label><input type="text" placeholder="Nombre del funcionario"></div>
+          </div>
+          <div class="fld"><label class="lbl">Observaciones</label><textarea placeholder="Registre novedades, avances, alertas o bloqueos…"></textarea></div>
+        </div>
+
+      </div>
+    </div>
+    <div class="pts-card" id="pts20">
+      <div class="pts-header" style="background:linear-gradient(135deg,#C8A84B11,#C8A84B05)">
+        <span class="pts-code" style="color:#C8A84B">PTS-20</span>
+        <div class="pts-title">Denuncia protegida, pedagogía pública y foco en mototrabajadores<small>PRY-20 · LE-8 · Causas sociales · HC-4 · HC-5</small></div>
+      </div>
+      <div class="pts-body">
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Problema Territorial Identificado</div>
+          <div class="info-box ib-gold">Subdenuncia en territorios de microcontrol; mototrabajadores como víctima priorizada sin atención.</div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Objetivo de la Acción</div>
+          <p style="font-size:.9em;color:var(--ink2);margin-bottom:8px">Habilitar canales de denuncia protegida y ejecutar campañas segmentadas.</p>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">📍 Georreferenciación y Focalización Territorial</div>
+          <div class="info-box ib-gold" style="margin-bottom:12px"><strong>Foco territorial:</strong> Polígonos de PRY-11 y población priorizada.</div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Localidad(es)</label><input type="text" placeholder="Ej: Norte-Centro Histórico, Suroccidente…"></div>
+            <div class="fld"><label class="lbl">Barrio(s) / Polígono(s)</label><input type="text" placeholder="Ej: Centro, Barrio Abajo, Boston…"></div>
+            <div class="fld"><label class="lbl">Latitud</label><input type="text" placeholder="Ej: 10.9685"></div>
+            <div class="fld"><label class="lbl">Longitud</label><input type="text" placeholder="Ej: -74.7813"></div>
+            <div class="fld"><label class="lbl">Cuadrante(s) MEBAR</label><input type="text" placeholder="Ej: CAI Norte, Cuadrante 4-2…"></div>
+            <div class="fld"><label class="lbl">Corredor(es) Asociado(s)</label><input type="text" placeholder="Ej: Cordialidad–Galapa…"></div>
+            <div class="fld"><label class="lbl">Zona de Influencia (Radio)</label><input type="text" placeholder="Ej: 500 m"></div>
+            <div class="fld"><label class="lbl">Referencia Cartográfica</label><input type="text" placeholder="Ej: Mapa Leaflet hoja 3, Anexo…"></div>
+          </div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Acciones Operacionales</div>
+          <div class="op-row" style="border-left-color:#C8A84B">
+          <span class="op-code" style="color:#C8A84B">OP-20.1</span>
+          <span class="op-desc">Canales protegidos y protocolo de protección del denunciante</span>
+        </div>
+<div class="op-row" style="border-left-color:#C8A84B">
+          <span class="op-code" style="color:#C8A84B">OP-20.2</span>
+          <span class="op-desc">Pedagogía segmentada y trabajo con colectivos de mototrabajadores</span>
+        </div>
+
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Indicadores de Seguimiento</div>
+          <div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Canales operando</div>
+<div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Disposición de compra ilícita: decreciente</div>
+<div class="ind-row"><span class="ind-dot" style="background:#C8A84B"></span>Campañas ejecutadas</div>
+
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Responsable y Cronograma</div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Responsable (R)</label><input type="text" value="OSCC + Fiscalía + Comunidad" readonly style="font-weight:600"></div>
+            <div class="fld"><label class="lbl">Horizonte Temporal</label><input type="text" value="2026-S2 · Operación continua a 2029" readonly style="font-size:.82em"></div>
+          </div>
+        </div>
+
+        <div class="pts-section">
+          <div class="pts-section-hdr sh-gold">Control y Seguimiento</div>
+          <div class="fld">
+            <label class="lbl">Estado Actual</label>
+            <div class="status-row">
+              <div class="status-opt"><input type="radio" name="estado_pts20" id="e1_pts20"><label for="e1_pts20">⬜ No Iniciado</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts20" id="e2_pts20"><label for="e2_pts20">📐 En Diseño</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts20" id="e3_pts20"><label for="e3_pts20">▶️ En Ejecución</label></div>
+              <div class="status-opt"><input type="radio" name="estado_pts20" id="e4_pts20"><label for="e4_pts20">✅ Consolidado</label></div>
+            </div>
+          </div>
+          <div class="fld">
+            <label class="lbl">Semáforo</label>
+            <div class="sem-row">
+              <div class="sem-opt sem-verde"><input type="radio" name="sem_pts20" id="sv_pts20"><label for="sv_pts20" class="sv">🟢 Verde</label></div>
+              <div class="sem-opt sem-amarillo"><input type="radio" name="sem_pts20" id="sa_pts20"><label for="sa_pts20" class="sa">🟡 Amarillo</label></div>
+              <div class="sem-opt sem-rojo"><input type="radio" name="sem_pts20" id="sr_pts20"><label for="sr_pts20" class="sr">🔴 Rojo</label></div>
+            </div>
+          </div>
+          <div class="geo-grid">
+            <div class="fld"><label class="lbl">Fecha de Última Actualización</label><input type="date"></div>
+            <div class="fld"><label class="lbl">Responsable del Registro</label><input type="text" placeholder="Nombre del funcionario"></div>
+          </div>
+          <div class="fld"><label class="lbl">Observaciones</label><textarea placeholder="Registre novedades, avances, alertas o bloqueos…"></textarea></div>
+        </div>
+
+      </div>
+    </div>
+
+</div>
+
+<div class="footer">
+  <div><b>OSCC Barranquilla 2026</b> · Fichas PTS · LE-8 · Corresponsabilidad y Pedagogía Ciudadana · USO RESERVADO</div>
+  <div>VIRTUS GLOBAL · Consultoría Fase 2 · Estrategia Integral Hurto de Vehículos 2026–2029 · Versión 1.0</div>
+</div>
+
+<button class="btn-print" onclick="window.print()">🖨️ Imprimir</button>
+
+</body>
+</html>
