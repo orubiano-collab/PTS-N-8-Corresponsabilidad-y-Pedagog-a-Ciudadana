@@ -125,6 +125,9 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);min-height:
 .btn-print{position:fixed;bottom:20px;right:20px;background:var(--navy);color:#fff;border:none;padding:10px 20px;border-radius:var(--r);cursor:pointer;font-family:var(--font-b);font-weight:600;font-size:.85em;box-shadow:var(--sh);z-index:200;display:flex;align-items:center;gap:6px;transition:transform .15s}
 .btn-print:hover{transform:translateY(-2px)}
 @media print{.btn-print,.topbar,.stripe{display:none!important}.hero{padding:24px!important}.wrap{padding:12px!important}.pts-card{break-inside:avoid}}
+
+.btn-geo{background:var(--cobalt);color:#fff;border:none;padding:4px 12px;border-radius:var(--r);font-family:var(--font-b);font-weight:600;font-size:.7em;cursor:pointer;transition:background .2s;margin-top:2px;white-space:nowrap}
+.btn-geo:hover{background:var(--cobalt2)}
 </style>
 </head>
 <body>
@@ -190,10 +193,34 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);min-height:
           <div class="pts-section-hdr sh-gold">📍 Georreferenciación y Focalización Territorial</div>
           <div class="info-box ib-gold" style="margin-bottom:12px"><strong>Foco territorial:</strong> Establecimientos adheridos (georreferenciados desde PRY-04); zonas de verificación.</div>
           <div class="geo-grid">
-            <div class="fld"><label class="lbl">Localidad(es)</label><input type="text" placeholder="Ej: Norte-Centro Histórico, Suroccidente…"></div>
-            <div class="fld"><label class="lbl">Barrio(s) / Polígono(s)</label><input type="text" placeholder="Ej: Centro, Barrio Abajo, Boston…"></div>
-            <div class="fld"><label class="lbl">Latitud</label><input type="text" placeholder="Ej: 10.9685"></div>
-            <div class="fld"><label class="lbl">Longitud</label><input type="text" placeholder="Ej: -74.7813"></div>
+            <div class="fld">
+              <label class="lbl">Localidad</label>
+              <select id="localidad_pts19" onchange="actualizarBarrios('localidad_pts19','barrio_pts19')">
+                <option value="">Seleccionar localidad</option>
+                <option value="Suroccidente">Suroccidente</option>
+                <option value="Metropolitana">Metropolitana</option>
+                <option value="Suroriente">Suroriente</option>
+                <option value="Norte-Centro Histórico">Norte-Centro Histórico</option>
+                <option value="Riomar">Riomar</option>
+              </select>
+            </div>
+            <div class="fld">
+              <label class="lbl">Barrio / Territorio</label>
+              <select id="barrio_pts19">
+                <option value="">Seleccionar primero una localidad</option>
+              </select>
+            </div>
+            <div class="fld">
+              <label class="lbl">Latitud</label>
+              <div style="display:flex;gap:5px;">
+                <input type="text" id="lat_pts19" placeholder="Ej: 10.9685">
+                <button class="btn-geo" type="button" onclick="obtenerCoordenadas('lat_pts19','lng_pts19')">📍 Obtener</button>
+              </div>
+            </div>
+            <div class="fld">
+              <label class="lbl">Longitud</label>
+              <input type="text" id="lng_pts19" placeholder="Ej: -74.7813">
+            </div>
             <div class="fld"><label class="lbl">Cuadrante(s) MEBAR</label><input type="text" placeholder="Ej: CAI Norte, Cuadrante 4-2…"></div>
             <div class="fld"><label class="lbl">Corredor(es) Asociado(s)</label><input type="text" placeholder="Ej: Cordialidad–Galapa…"></div>
             <div class="fld"><label class="lbl">Zona de Influencia (Radio)</label><input type="text" placeholder="Ej: 500 m"></div>
@@ -279,10 +306,34 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);min-height:
           <div class="pts-section-hdr sh-gold">📍 Georreferenciación y Focalización Territorial</div>
           <div class="info-box ib-gold" style="margin-bottom:12px"><strong>Foco territorial:</strong> Polígonos de PRY-11 y población priorizada.</div>
           <div class="geo-grid">
-            <div class="fld"><label class="lbl">Localidad(es)</label><input type="text" placeholder="Ej: Norte-Centro Histórico, Suroccidente…"></div>
-            <div class="fld"><label class="lbl">Barrio(s) / Polígono(s)</label><input type="text" placeholder="Ej: Centro, Barrio Abajo, Boston…"></div>
-            <div class="fld"><label class="lbl">Latitud</label><input type="text" placeholder="Ej: 10.9685"></div>
-            <div class="fld"><label class="lbl">Longitud</label><input type="text" placeholder="Ej: -74.7813"></div>
+            <div class="fld">
+              <label class="lbl">Localidad</label>
+              <select id="localidad_pts20" onchange="actualizarBarrios('localidad_pts20','barrio_pts20')">
+                <option value="">Seleccionar localidad</option>
+                <option value="Suroccidente">Suroccidente</option>
+                <option value="Metropolitana">Metropolitana</option>
+                <option value="Suroriente">Suroriente</option>
+                <option value="Norte-Centro Histórico">Norte-Centro Histórico</option>
+                <option value="Riomar">Riomar</option>
+              </select>
+            </div>
+            <div class="fld">
+              <label class="lbl">Barrio / Territorio</label>
+              <select id="barrio_pts20">
+                <option value="">Seleccionar primero una localidad</option>
+              </select>
+            </div>
+            <div class="fld">
+              <label class="lbl">Latitud</label>
+              <div style="display:flex;gap:5px;">
+                <input type="text" id="lat_pts20" placeholder="Ej: 10.9685">
+                <button class="btn-geo" type="button" onclick="obtenerCoordenadas('lat_pts20','lng_pts20')">📍 Obtener</button>
+              </div>
+            </div>
+            <div class="fld">
+              <label class="lbl">Longitud</label>
+              <input type="text" id="lng_pts20" placeholder="Ej: -74.7813">
+            </div>
             <div class="fld"><label class="lbl">Cuadrante(s) MEBAR</label><input type="text" placeholder="Ej: CAI Norte, Cuadrante 4-2…"></div>
             <div class="fld"><label class="lbl">Corredor(es) Asociado(s)</label><input type="text" placeholder="Ej: Cordialidad–Galapa…"></div>
             <div class="fld"><label class="lbl">Zona de Influencia (Radio)</label><input type="text" placeholder="Ej: 500 m"></div>
@@ -357,5 +408,114 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);min-height:
 
 <button class="btn-print" onclick="window.print()">🖨️ Imprimir</button>
 
+<script>
+// Catálogo territorial oficial de Barranquilla (fuente: Alcaldía Distrital)
+const catalogoTerritorial = {
+  "Suroccidente": [
+    "Alfonso López", "Bernardo Hoyos", "Buena Esperanza", "California", "Caribe Verde",
+    "Carlos Meisel", "Ciudad Modesto", "Ciudadela de la Salud", "Ciudadela de Paz",
+    "Colina Campestre", "Cordialidad", "Corregimiento de Juan Mina", "Cuchilla de Villate",
+    "El Bosque", "El Carmén", "El Eden", "El Pueblo", "El Romance", "El Rubí",
+    "El Silencio", "El Valle", "Evaristo Sourdis", "Gerlein y Villate", "Kalamary",
+    "La Ceiba", "La Esmeralda", "La Florida", "La Gloria", "La Libertad", "La Manga",
+    "La Paz", "La Pradera", "Las Colinas", "Las Estrellas", "Las Malvinas",
+    "Las Terrazas", "Lipaya", "Loma Fresca", "Los Andes", "Los Angeles I",
+    "Los Angeles II", "Los Angeles III", "Los Olivos I", "Los Olivos II",
+    "Los Pinos", "Los Rosales", "Lucero", "Me Quejo", "Mercedes Sur",
+    "Nueva Colombia", "Nueva Granada", "Olaya", "Pinar del Rio", "Por Fin",
+    "Pumarejo", "San Felipe", "San Isidro", "San Pedro Alejandrino",
+    "San Pedro Sector I", "Santo Domigo", "Siete de Agosto", "Villa del Rosario",
+    "Villa Flor", "Villas de la Cordialidad", "Villas de San Pablo"
+  ],
+  "Metropolitana": [
+    "Buenos Aires", "Carrizal", "Cevillar", "Ciudadela 20 de Julio", "El Santuario",
+    "Kennedy", "La Sierra", "La Sierrita", "Las Americas", "Las Cayenas",
+    "Las Gardenias", "Las Granjas", "Los Continentes", "Los Girasoles",
+    "San Luis", "Santa María", "Santo Domingo de Guzman", "Sevilla Real",
+    "Siete de Abril", "Sinaí", "Veinte de Julio", "Villa San Carlos",
+    "Villa San Pedro", "Villa Sevilla", "Villa Valery"
+  ],
+  "Suroriente": [
+    "Atlántico", "Bellarena", "Boyaca", "Chiquinquira", "El Campito",
+    "El Limón", "El Milagro", "El Parque Sector Barranquilla", "José Antonio Galán",
+    "La Arboraya", "La Chinita", "La Luz", "La Magdalena", "La Unión",
+    "La Victoria", "Las Dunas", "Las Nieves", "Las Palmas", "Las Palmeras",
+    "Los Laureles", "Los Trupillos", "Moderno", "Montes", "Pasadena",
+    "Primero de Mayo El Ferry", "Rebolo", "San Jose", "San Nicolás",
+    "San Roque", "Santa Helena", "Simón Bolívar", "Tayrona", "Universal I",
+    "Universal II", "Villa Blanca", "Villa del Carmén"
+  ],
+  "Norte-Centro Histórico": [
+    "Abajo", "Alameda del Rio", "Altos del Prado", "America", "Barlovento",
+    "Bellavista", "Bethania", "Bostón", "Campo Alegre", "Centro",
+    "Ciudad Jardín", "Colombia", "El Castillo", "El Golf", "El Porvenir",
+    "El Prado", "El Recreo", "El Rosario", "El Tabor", "Granadillo",
+    "La Campiña", "La Concepción", "La Cumbre", "La Loma", "Las Delicias",
+    "Las Mercedes", "Las Nubes (vereda)", "Los Alpes", "Los Jobos", "Los Nogales",
+    "Miramar", "Modelo", "Montecristo", "Nuevo Horizonte", "Paraiso",
+    "San Francisco", "Santa Ana", "Villa Country", "Villanueva",
+    "Zona Franca", "Zona Industrial"
+  ],
+  "Riomar": [
+    "Altamira", "Altos de Riomar", "Altos del Limón", "Andalucia",
+    "Corregimiento Eduardo Santos La Playa", "El Limoncito", "El Poblado",
+    "La Floresta", "Las Flores", "Las Tres Ave Maria", "Riomar",
+    "San Salvador", "San Vicente", "Santa Mónica", "Siape",
+    "Solaire Norte", "Villa Campestre", "Villa Carolina", "Villa del Este",
+    "Villa Santos"
+  ]
+};
+
+function actualizarBarrios(localidadSelectId, barrioSelectId) {
+  const localidadSelect = document.getElementById(localidadSelectId);
+  const barrioSelect = document.getElementById(barrioSelectId);
+  const localidad = localidadSelect.value;
+
+  barrioSelect.innerHTML = '';
+
+  if (!localidad) {
+    barrioSelect.innerHTML = '<option value="">Seleccionar primero una localidad</option>';
+    return;
+  }
+
+  const barrios = catalogoTerritorial[localidad] || [];
+  barrioSelect.innerHTML = '<option value="">Seleccionar barrio/territorio</option>';
+  barrios.forEach(barrio => {
+    const option = document.createElement('option');
+    option.value = barrio;
+    option.textContent = barrio;
+    barrioSelect.appendChild(option);
+  });
+}
+
+function obtenerCoordenadas(latId, lngId) {
+  if (!navigator.geolocation) {
+    alert("El navegador no soporta geolocalización.");
+    return;
+  }
+
+  document.getElementById(latId).value = "Obteniendo...";
+  document.getElementById(lngId).value = "Obteniendo...";
+
+  navigator.geolocation.getCurrentPosition(
+    function(position) {
+      document.getElementById(latId).value = position.coords.latitude.toFixed(6);
+      document.getElementById(lngId).value = position.coords.longitude.toFixed(6);
+    },
+    function(error) {
+      let msg = "Error obteniendo ubicación: ";
+      switch(error.code) {
+        case error.PERMISSION_DENIED: msg += "Permiso denegado."; break;
+        case error.POSITION_UNAVAILABLE: msg += "Ubicación no disponible."; break;
+        case error.TIMEOUT: msg += "Tiempo de espera agotado."; break;
+        default: msg += error.message;
+      }
+      alert(msg);
+      document.getElementById(latId).value = "";
+      document.getElementById(lngId).value = "";
+    }
+  );
+}
+</script>
 </body>
 </html>
