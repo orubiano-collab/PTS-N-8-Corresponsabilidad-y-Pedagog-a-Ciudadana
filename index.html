@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formulario PTS · LE-8 · Corresponsabilidad y Pedagogía Ciudadana · OSCC Barranquilla</title>
+<title>Formulario PTS · LE-8 · Corresponsabilidad y Pedagogía Ciudadana · GESEG</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,800;1,400;1,800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 :root{
@@ -34,8 +34,6 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);min-height:
 
 .topbar{background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:100}
 .tb-brand{display:flex;align-items:center;gap:14px}
-.tb-logo-text{font-weight:800;font-size:1.1em;color:var(--navy);letter-spacing:.05em;line-height:1.2}
-.tb-logo-text small{display:block;font-weight:400;font-size:.7em;color:var(--cobalt);letter-spacing:.03em}
 .tb-name{font-weight:700;color:var(--navy);font-size:.95em;line-height:1.3}
 .tb-name span{display:block;font-weight:400;font-size:.78em;color:var(--ink2)}
 .pill{font-size:.72em;padding:3px 11px;border-radius:20px;font-weight:600;white-space:nowrap}
@@ -124,10 +122,15 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);min-height:
 
 .btn-print{position:fixed;bottom:20px;right:20px;background:var(--navy);color:#fff;border:none;padding:10px 20px;border-radius:var(--r);cursor:pointer;font-family:var(--font-b);font-weight:600;font-size:.85em;box-shadow:var(--sh);z-index:200;display:flex;align-items:center;gap:6px;transition:transform .15s}
 .btn-print:hover{transform:translateY(-2px)}
-@media print{.btn-print,.topbar,.stripe{display:none!important}.hero{padding:24px!important}.wrap{padding:12px!important}.pts-card{break-inside:avoid}}
 
-.btn-geo{background:var(--cobalt);color:#fff;border:none;padding:4px 12px;border-radius:var(--r);font-family:var(--font-b);font-weight:600;font-size:.7em;cursor:pointer;transition:background .2s;margin-top:2px;white-space:nowrap}
-.btn-geo:hover{background:var(--cobalt2)}
+.btn-guardar{background:var(--cobalt);color:#fff;border:none;padding:9px 18px;border-radius:20px;font-family:var(--font-b);font-weight:600;font-size:.82em;cursor:pointer;transition:all .2s}
+.btn-guardar:hover{background:var(--cobalt2);transform:translateY(-1px)}
+.btn-guardar:disabled{opacity:.6;cursor:default;transform:none}
+.save-status{font-size:.8em;font-weight:600}
+.save-status.ok{color:#0E9F6E}
+.save-status.err{color:#D6534A}
+
+@media print{.btn-print,.topbar,.stripe{display:none!important}.hero{padding:24px!important}.wrap{padding:12px!important}.pts-card{break-inside:avoid}}
 </style>
 </head>
 <body>
@@ -135,10 +138,12 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);min-height:
 
 <div class="topbar">
   <div class="tb-brand">
-    <div class="tb-logo-text">
-      OSCC
-      <small>Barranquilla · Oficina de Seguridad y Convivencia</small>
-    </div>
+    <div style="background:#fff;border-radius:7px;padding:6px 14px;display:flex;align-items:center;box-shadow:0 1px 6px rgba(0,0,0,.12);">
+  <div style="display:flex;flex-direction:column;align-items:center;line-height:1.2;">
+    <span style="font-weight:800;font-size:1.2em;color:#002855;letter-spacing:.05em;">GESEG</span>
+    <span style="font-size:.55em;font-weight:600;color:#0057A8;letter-spacing:.03em;">Gestión de la Seguridad S.A.S.</span>
+  </div>
+</div>
     <div style="width:1px;height:28px;background:rgba(0,40,85,.14);flex-shrink:0;"></div>
     <div class="tb-name">OSCC — Barranquilla 2026<span>Formulario PTS · LE-8 · Hurto de Vehículos</span></div>
   </div>
@@ -193,38 +198,14 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);min-height:
           <div class="pts-section-hdr sh-gold">📍 Georreferenciación y Focalización Territorial</div>
           <div class="info-box ib-gold" style="margin-bottom:12px"><strong>Foco territorial:</strong> Establecimientos adheridos (georreferenciados desde PRY-04); zonas de verificación.</div>
           <div class="geo-grid">
-            <div class="fld">
-              <label class="lbl">Localidad</label>
-              <select id="localidad_pts19" onchange="actualizarBarrios('localidad_pts19','barrio_pts19')">
-                <option value="">Seleccionar localidad</option>
-                <option value="Suroccidente">Suroccidente</option>
-                <option value="Metropolitana">Metropolitana</option>
-                <option value="Suroriente">Suroriente</option>
-                <option value="Norte-Centro Histórico">Norte-Centro Histórico</option>
-                <option value="Riomar">Riomar</option>
-              </select>
-            </div>
-            <div class="fld">
-              <label class="lbl">Barrio / Territorio</label>
-              <select id="barrio_pts19">
-                <option value="">Seleccionar primero una localidad</option>
-              </select>
-            </div>
-            <div class="fld">
-              <label class="lbl">Latitud</label>
-              <div style="display:flex;gap:5px;">
-                <input type="text" id="lat_pts19" placeholder="Ej: 10.9685">
-                <button class="btn-geo" type="button" onclick="obtenerCoordenadas('lat_pts19','lng_pts19')">📍 Obtener</button>
-              </div>
-            </div>
-            <div class="fld">
-              <label class="lbl">Longitud</label>
-              <input type="text" id="lng_pts19" placeholder="Ej: -74.7813">
-            </div>
-            <div class="fld"><label class="lbl">Cuadrante(s) MEBAR</label><input type="text" placeholder="Ej: CAI Norte, Cuadrante 4-2…"></div>
-            <div class="fld"><label class="lbl">Corredor(es) Asociado(s)</label><input type="text" placeholder="Ej: Cordialidad–Galapa…"></div>
-            <div class="fld"><label class="lbl">Zona de Influencia (Radio)</label><input type="text" placeholder="Ej: 500 m"></div>
-            <div class="fld"><label class="lbl">Referencia Cartográfica</label><input type="text" placeholder="Ej: Mapa Leaflet hoja 3, Anexo…"></div>
+            <div class="fld"><label class="lbl">Localidad(es)</label><input type="text" id="loc_pts19" placeholder="Ej: Norte-Centro Histórico, Suroccidente…"></div>
+            <div class="fld"><label class="lbl">Barrio(s) / Polígono(s)</label><input type="text" id="barrio_pts19" placeholder="Ej: Centro, Barrio Abajo, Boston…"></div>
+            <div class="fld"><label class="lbl">Latitud</label><input type="text" id="lat_pts19" placeholder="Ej: 10.9685"></div>
+            <div class="fld"><label class="lbl">Longitud</label><input type="text" id="lng_pts19" placeholder="Ej: -74.7813"></div>
+            <div class="fld"><label class="lbl">Cuadrante(s) MEBAR</label><input type="text" id="cuadrante_pts19" placeholder="Ej: CAI Norte, Cuadrante 4-2…"></div>
+            <div class="fld"><label class="lbl">Corredor(es) Asociado(s)</label><input type="text" id="corredor_pts19" placeholder="Ej: Cordialidad–Galapa…"></div>
+            <div class="fld"><label class="lbl">Zona de Influencia (Radio)</label><input type="text" id="zona_pts19" placeholder="Ej: 500 m"></div>
+            <div class="fld"><label class="lbl">Referencia Cartográfica</label><input type="text" id="refcarto_pts19" placeholder="Ej: Mapa Leaflet hoja 3, Anexo…"></div>
           </div>
         </div>
 
@@ -277,10 +258,14 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);min-height:
             </div>
           </div>
           <div class="geo-grid">
-            <div class="fld"><label class="lbl">Fecha de Última Actualización</label><input type="date"></div>
-            <div class="fld"><label class="lbl">Responsable del Registro</label><input type="text" placeholder="Nombre del funcionario"></div>
+            <div class="fld"><label class="lbl">Fecha de Última Actualización</label><input type="date" id="fecha_pts19"></div>
+            <div class="fld"><label class="lbl">Responsable del Registro</label><input type="text" id="respreg_pts19" placeholder="Nombre del funcionario"></div>
           </div>
-          <div class="fld"><label class="lbl">Observaciones</label><textarea placeholder="Registre novedades, avances, alertas o bloqueos…"></textarea></div>
+          <div class="fld"><label class="lbl">Observaciones</label><textarea id="obs_pts19" placeholder="Registre novedades, avances, alertas o bloqueos…"></textarea></div>
+          <div class="fld" style="margin-top:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <button type="button" class="btn-guardar" onclick="guardarPTS('pts19')">💾 Guardar avance — PTS-19</button>
+            <span class="save-status" id="status_pts19"></span>
+          </div>
         </div>
 
       </div>
@@ -306,38 +291,14 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);min-height:
           <div class="pts-section-hdr sh-gold">📍 Georreferenciación y Focalización Territorial</div>
           <div class="info-box ib-gold" style="margin-bottom:12px"><strong>Foco territorial:</strong> Polígonos de PRY-11 y población priorizada.</div>
           <div class="geo-grid">
-            <div class="fld">
-              <label class="lbl">Localidad</label>
-              <select id="localidad_pts20" onchange="actualizarBarrios('localidad_pts20','barrio_pts20')">
-                <option value="">Seleccionar localidad</option>
-                <option value="Suroccidente">Suroccidente</option>
-                <option value="Metropolitana">Metropolitana</option>
-                <option value="Suroriente">Suroriente</option>
-                <option value="Norte-Centro Histórico">Norte-Centro Histórico</option>
-                <option value="Riomar">Riomar</option>
-              </select>
-            </div>
-            <div class="fld">
-              <label class="lbl">Barrio / Territorio</label>
-              <select id="barrio_pts20">
-                <option value="">Seleccionar primero una localidad</option>
-              </select>
-            </div>
-            <div class="fld">
-              <label class="lbl">Latitud</label>
-              <div style="display:flex;gap:5px;">
-                <input type="text" id="lat_pts20" placeholder="Ej: 10.9685">
-                <button class="btn-geo" type="button" onclick="obtenerCoordenadas('lat_pts20','lng_pts20')">📍 Obtener</button>
-              </div>
-            </div>
-            <div class="fld">
-              <label class="lbl">Longitud</label>
-              <input type="text" id="lng_pts20" placeholder="Ej: -74.7813">
-            </div>
-            <div class="fld"><label class="lbl">Cuadrante(s) MEBAR</label><input type="text" placeholder="Ej: CAI Norte, Cuadrante 4-2…"></div>
-            <div class="fld"><label class="lbl">Corredor(es) Asociado(s)</label><input type="text" placeholder="Ej: Cordialidad–Galapa…"></div>
-            <div class="fld"><label class="lbl">Zona de Influencia (Radio)</label><input type="text" placeholder="Ej: 500 m"></div>
-            <div class="fld"><label class="lbl">Referencia Cartográfica</label><input type="text" placeholder="Ej: Mapa Leaflet hoja 3, Anexo…"></div>
+            <div class="fld"><label class="lbl">Localidad(es)</label><input type="text" id="loc_pts20" placeholder="Ej: Norte-Centro Histórico, Suroccidente…"></div>
+            <div class="fld"><label class="lbl">Barrio(s) / Polígono(s)</label><input type="text" id="barrio_pts20" placeholder="Ej: Centro, Barrio Abajo, Boston…"></div>
+            <div class="fld"><label class="lbl">Latitud</label><input type="text" id="lat_pts20" placeholder="Ej: 10.9685"></div>
+            <div class="fld"><label class="lbl">Longitud</label><input type="text" id="lng_pts20" placeholder="Ej: -74.7813"></div>
+            <div class="fld"><label class="lbl">Cuadrante(s) MEBAR</label><input type="text" id="cuadrante_pts20" placeholder="Ej: CAI Norte, Cuadrante 4-2…"></div>
+            <div class="fld"><label class="lbl">Corredor(es) Asociado(s)</label><input type="text" id="corredor_pts20" placeholder="Ej: Cordialidad–Galapa…"></div>
+            <div class="fld"><label class="lbl">Zona de Influencia (Radio)</label><input type="text" id="zona_pts20" placeholder="Ej: 500 m"></div>
+            <div class="fld"><label class="lbl">Referencia Cartográfica</label><input type="text" id="refcarto_pts20" placeholder="Ej: Mapa Leaflet hoja 3, Anexo…"></div>
           </div>
         </div>
 
@@ -390,10 +351,14 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);min-height:
             </div>
           </div>
           <div class="geo-grid">
-            <div class="fld"><label class="lbl">Fecha de Última Actualización</label><input type="date"></div>
-            <div class="fld"><label class="lbl">Responsable del Registro</label><input type="text" placeholder="Nombre del funcionario"></div>
+            <div class="fld"><label class="lbl">Fecha de Última Actualización</label><input type="date" id="fecha_pts20"></div>
+            <div class="fld"><label class="lbl">Responsable del Registro</label><input type="text" id="respreg_pts20" placeholder="Nombre del funcionario"></div>
           </div>
-          <div class="fld"><label class="lbl">Observaciones</label><textarea placeholder="Registre novedades, avances, alertas o bloqueos…"></textarea></div>
+          <div class="fld"><label class="lbl">Observaciones</label><textarea id="obs_pts20" placeholder="Registre novedades, avances, alertas o bloqueos…"></textarea></div>
+          <div class="fld" style="margin-top:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <button type="button" class="btn-guardar" onclick="guardarPTS('pts20')">💾 Guardar avance — PTS-20</button>
+            <span class="save-status" id="status_pts20"></span>
+          </div>
         </div>
 
       </div>
@@ -408,114 +373,142 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);min-height:
 
 <button class="btn-print" onclick="window.print()">🖨️ Imprimir</button>
 
+
 <script>
-// Catálogo territorial oficial de Barranquilla (fuente: Alcaldía Distrital)
-const catalogoTerritorial = {
-  "Suroccidente": [
-    "Alfonso López", "Bernardo Hoyos", "Buena Esperanza", "California", "Caribe Verde",
-    "Carlos Meisel", "Ciudad Modesto", "Ciudadela de la Salud", "Ciudadela de Paz",
-    "Colina Campestre", "Cordialidad", "Corregimiento de Juan Mina", "Cuchilla de Villate",
-    "El Bosque", "El Carmén", "El Eden", "El Pueblo", "El Romance", "El Rubí",
-    "El Silencio", "El Valle", "Evaristo Sourdis", "Gerlein y Villate", "Kalamary",
-    "La Ceiba", "La Esmeralda", "La Florida", "La Gloria", "La Libertad", "La Manga",
-    "La Paz", "La Pradera", "Las Colinas", "Las Estrellas", "Las Malvinas",
-    "Las Terrazas", "Lipaya", "Loma Fresca", "Los Andes", "Los Angeles I",
-    "Los Angeles II", "Los Angeles III", "Los Olivos I", "Los Olivos II",
-    "Los Pinos", "Los Rosales", "Lucero", "Me Quejo", "Mercedes Sur",
-    "Nueva Colombia", "Nueva Granada", "Olaya", "Pinar del Rio", "Por Fin",
-    "Pumarejo", "San Felipe", "San Isidro", "San Pedro Alejandrino",
-    "San Pedro Sector I", "Santo Domigo", "Siete de Agosto", "Villa del Rosario",
-    "Villa Flor", "Villas de la Cordialidad", "Villas de San Pablo"
-  ],
-  "Metropolitana": [
-    "Buenos Aires", "Carrizal", "Cevillar", "Ciudadela 20 de Julio", "El Santuario",
-    "Kennedy", "La Sierra", "La Sierrita", "Las Americas", "Las Cayenas",
-    "Las Gardenias", "Las Granjas", "Los Continentes", "Los Girasoles",
-    "San Luis", "Santa María", "Santo Domingo de Guzman", "Sevilla Real",
-    "Siete de Abril", "Sinaí", "Veinte de Julio", "Villa San Carlos",
-    "Villa San Pedro", "Villa Sevilla", "Villa Valery"
-  ],
-  "Suroriente": [
-    "Atlántico", "Bellarena", "Boyaca", "Chiquinquira", "El Campito",
-    "El Limón", "El Milagro", "El Parque Sector Barranquilla", "José Antonio Galán",
-    "La Arboraya", "La Chinita", "La Luz", "La Magdalena", "La Unión",
-    "La Victoria", "Las Dunas", "Las Nieves", "Las Palmas", "Las Palmeras",
-    "Los Laureles", "Los Trupillos", "Moderno", "Montes", "Pasadena",
-    "Primero de Mayo El Ferry", "Rebolo", "San Jose", "San Nicolás",
-    "San Roque", "Santa Helena", "Simón Bolívar", "Tayrona", "Universal I",
-    "Universal II", "Villa Blanca", "Villa del Carmén"
-  ],
-  "Norte-Centro Histórico": [
-    "Abajo", "Alameda del Rio", "Altos del Prado", "America", "Barlovento",
-    "Bellavista", "Bethania", "Bostón", "Campo Alegre", "Centro",
-    "Ciudad Jardín", "Colombia", "El Castillo", "El Golf", "El Porvenir",
-    "El Prado", "El Recreo", "El Rosario", "El Tabor", "Granadillo",
-    "La Campiña", "La Concepción", "La Cumbre", "La Loma", "Las Delicias",
-    "Las Mercedes", "Las Nubes (vereda)", "Los Alpes", "Los Jobos", "Los Nogales",
-    "Miramar", "Modelo", "Montecristo", "Nuevo Horizonte", "Paraiso",
-    "San Francisco", "Santa Ana", "Villa Country", "Villanueva",
-    "Zona Franca", "Zona Industrial"
-  ],
-  "Riomar": [
-    "Altamira", "Altos de Riomar", "Altos del Limón", "Andalucia",
-    "Corregimiento Eduardo Santos La Playa", "El Limoncito", "El Poblado",
-    "La Floresta", "Las Flores", "Las Tres Ave Maria", "Riomar",
-    "San Salvador", "San Vicente", "Santa Mónica", "Siape",
-    "Solaire Norte", "Villa Campestre", "Villa Carolina", "Villa del Este",
-    "Villa Santos"
-  ]
+// ════════════════════════════════════════════════════════════════
+//  CONFIGURACIÓN — CONEXIÓN A GOOGLE SHEETS (Apps Script único
+//  para las 8 líneas estratégicas del libro PTS)
+// ════════════════════════════════════════════════════════════════
+const API_URL_PTS = "PEGAR_AQUI_LA_URL_DEL_APPS_SCRIPT_/exec";
+const LE_NOMBRE = "Corresponsabilidad y Pedagogía Ciudadana"; // nombre exacto de la pestaña destino
+const PTS_META = {
+  "pts19": {
+    "code": "PTS-19",
+    "titulo": "Pactos de trazabilidad y corresponsabilidad gremial",
+    "responsable_accion": "OSCC",
+    "horizonte": "2026-S2 · Operación continua a 2029"
+  },
+  "pts20": {
+    "code": "PTS-20",
+    "titulo": "Denuncia protegida, pedagogía pública y foco en mototrabajadores",
+    "responsable_accion": "OSCC + Fiscalía + Comunidad",
+    "horizonte": "2026-S2 · Operación continua a 2029"
+  }
 };
 
-function actualizarBarrios(localidadSelectId, barrioSelectId) {
-  const localidadSelect = document.getElementById(localidadSelectId);
-  const barrioSelect = document.getElementById(barrioSelectId);
-  const localidad = localidadSelect.value;
+function leerRadioPTS(name) {
+  const el = document.querySelector('input[name="' + name + '"]:checked');
+  if (!el) return '';
+  const label = el.closest('label') || document.querySelector('label[for="' + el.id + '"]');
+  return label ? label.textContent.trim() : '';
+}
 
-  barrioSelect.innerHTML = '';
+function recopilarPTS(ptsid) {
+  const meta = PTS_META[ptsid];
+  return {
+    pts_code: meta.code,
+    titulo: meta.titulo,
+    le: LE_NOMBRE,
+    localidad: (document.getElementById('loc_' + ptsid) || {}).value || '',
+    barrio: (document.getElementById('barrio_' + ptsid) || {}).value || '',
+    latitud: (document.getElementById('lat_' + ptsid) || {}).value || '',
+    longitud: (document.getElementById('lng_' + ptsid) || {}).value || '',
+    cuadrante_mebar: (document.getElementById('cuadrante_' + ptsid) || {}).value || '',
+    corredor: (document.getElementById('corredor_' + ptsid) || {}).value || '',
+    zona_influencia: (document.getElementById('zona_' + ptsid) || {}).value || '',
+    ref_cartografica: (document.getElementById('refcarto_' + ptsid) || {}).value || '',
+    responsable_accion: meta.responsable_accion,
+    horizonte: meta.horizonte,
+    estado: leerRadioPTS('estado_' + ptsid),
+    semaforo: leerRadioPTS('sem_' + ptsid),
+    fecha_actualizacion: (document.getElementById('fecha_' + ptsid) || {}).value || '',
+    responsable_registro: (document.getElementById('respreg_' + ptsid) || {}).value || '',
+    observaciones: (document.getElementById('obs_' + ptsid) || {}).value || ''
+  };
+}
 
-  if (!localidad) {
-    barrioSelect.innerHTML = '<option value="">Seleccionar primero una localidad</option>';
-    return;
-  }
+// ════════════════════════════════════════════════════════════════
+//  ENVÍO A GOOGLE SHEETS (iframe oculto — evita bloqueos de CORS)
+// ════════════════════════════════════════════════════════════════
+function enviarPTSAGoogleSheets(datos) {
+  return new Promise((resolve, reject) => {
+    let iframe = document.getElementById('pts-hidden-iframe');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.name = 'pts-hidden-iframe';
+      iframe.id = 'pts-hidden-iframe';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+    }
 
-  const barrios = catalogoTerritorial[localidad] || [];
-  barrioSelect.innerHTML = '<option value="">Seleccionar barrio/territorio</option>';
-  barrios.forEach(barrio => {
-    const option = document.createElement('option');
-    option.value = barrio;
-    option.textContent = barrio;
-    barrioSelect.appendChild(option);
+    let form = document.getElementById('pts-hidden-form');
+    if (form) form.remove();
+    form = document.createElement('form');
+    form.id = 'pts-hidden-form';
+    form.method = 'POST';
+    form.action = API_URL_PTS;
+    form.target = 'pts-hidden-iframe';
+    form.style.display = 'none';
+
+    Object.keys(datos).forEach(key => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = datos[key] != null ? datos[key] : '';
+      form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+
+    let resuelto = false;
+    const onMessage = (event) => {
+      if (event.data && (event.data.status === 'ok' || event.data.status === 'error')) {
+        resuelto = true;
+        window.removeEventListener('message', onMessage);
+        if (event.data.status === 'ok') resolve(event.data);
+        else reject(event.data);
+      }
+    };
+    window.addEventListener('message', onMessage);
+
+    form.submit();
+
+    setTimeout(() => {
+      if (!resuelto) {
+        window.removeEventListener('message', onMessage);
+        resolve({status:'ok', aviso:'timeout'});
+      }
+    }, 4000);
   });
 }
 
-function obtenerCoordenadas(latId, lngId) {
-  if (!navigator.geolocation) {
-    alert("El navegador no soporta geolocalización.");
+function guardarPTS(ptsid) {
+  if (!API_URL_PTS || API_URL_PTS.indexOf('PEGAR_AQUI') !== -1) {
+    alert('⚠️ Falta configurar la URL del Apps Script (API_URL_PTS) en el código de este formulario.');
     return;
   }
+  const btn = document.querySelector('button[onclick="guardarPTS(\'' + ptsid + '\')"]');
+  const status = document.getElementById('status_' + ptsid);
+  const textoOriginal = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = '⏳ Guardando...';
+  status.textContent = '';
+  status.className = 'save-status';
 
-  document.getElementById(latId).value = "Obteniendo...";
-  document.getElementById(lngId).value = "Obteniendo...";
+  const datos = recopilarPTS(ptsid);
 
-  navigator.geolocation.getCurrentPosition(
-    function(position) {
-      document.getElementById(latId).value = position.coords.latitude.toFixed(6);
-      document.getElementById(lngId).value = position.coords.longitude.toFixed(6);
-    },
-    function(error) {
-      let msg = "Error obteniendo ubicación: ";
-      switch(error.code) {
-        case error.PERMISSION_DENIED: msg += "Permiso denegado."; break;
-        case error.POSITION_UNAVAILABLE: msg += "Ubicación no disponible."; break;
-        case error.TIMEOUT: msg += "Tiempo de espera agotado."; break;
-        default: msg += error.message;
-      }
-      alert(msg);
-      document.getElementById(latId).value = "";
-      document.getElementById(lngId).value = "";
-    }
-  );
+  enviarPTSAGoogleSheets(datos).then(() => {
+    status.textContent = '✅ Guardado ' + new Date().toLocaleTimeString('es-CO', {hour:'2-digit',minute:'2-digit'});
+    status.className = 'save-status ok';
+  }).catch(() => {
+    status.textContent = '❌ Error al guardar, intente de nuevo';
+    status.className = 'save-status err';
+  }).finally(() => {
+    btn.disabled = false;
+    btn.textContent = textoOriginal;
+  });
 }
 </script>
+
 </body>
 </html>
